@@ -71,7 +71,7 @@ extras = set(extras)
 
 # Groups that should be installed
 with open(CONFIGFILE) as configFile:
-  allowedGroups = set([i.strip() for i in configFile.readlines().split("\n")])
+  allowedGroups = set([i.strip() for i in configFile.readlines()])
 
 # For any package for which there is an update, the older version is marked as
 # an extra, but we don't want to remove them, so we get a list of them:
