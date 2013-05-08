@@ -75,7 +75,7 @@ with open(CONFIGFILE) as configFile:
 
 # For any package for which there is an update, the older version is marked as
 # an extra, but we don't want to remove them, so we get a list of them:
-updates = base.doPackagesLists('updates').updates
+updates = base.doPackageLists('updates').updates
 updates = set(updates)
 
 # We remove the extra packages(Except those being updated), as well

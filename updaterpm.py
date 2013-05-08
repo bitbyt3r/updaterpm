@@ -94,7 +94,7 @@ def pkgsToStrList(pkgs):
     return strList
 
 def grpsToStrList(grps):
-  return ["@"+str(i.name) for i in grps]
+  return ["@"+i for i in grps]
 
 removingPackages = pkgsToStrList(removePackages)
 removingGroups = grpsToStrList(removeGroups)
