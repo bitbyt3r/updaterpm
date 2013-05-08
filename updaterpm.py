@@ -22,7 +22,7 @@ import sys
 import re
 from types import *
 
-CONFFILE='/usr/csee/etc/updaterpm.conf'
+CONFIGFILE='/usr/csee/etc/updaterpm.conf'
 CONFDIR='/etc/yum.repos.d'
 CSEE_CONFDIR='/etc/yum.repos.d.csee'
 STAG_CONFDIR='/etc/yum.repos.d.staging'

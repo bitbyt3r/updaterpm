@@ -47,7 +47,7 @@ if len(sys.argv) > 1 and sys.argv[1] == '--staging':
 elif len(sys.argv) > 1 and sys.argv[1] == '--production':
   cleanupConfig()
   os.symlink(CSEE_CONFDIR, CONFDIR)
-elif not(os.path.exists(CONFDIR):
+elif not(os.path.exists(CONFDIR)):
   os.symlink(CSEE_CONFDIR, CONFDIR)
 
 # Clean Yum cache files to make sure that we get the most recent ones
