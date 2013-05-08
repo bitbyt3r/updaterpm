@@ -1,0 +1,19 @@
+#!/bin/sh
+# updaterpm (20080222)
+# James Lee <jlee23@cs.umbc.ed>
+#
+# The original updaterpm script was entirely bash.
+# To keep some level of compatibility, the original REMOVE and IGNORE variables
+# are exported so that they can also be used by the newer python script.
+# 
+# The wget line at the end is to notify the database that keeps such things
+# that the machine has run updaterpm successfully.
+
+./updaterpm.py $@ && \
+STAT=$?
+if [ $STAT ]; then
+   /usr/bin/wget --no-check-certificate https://my.cs.umbc.edu/updates-monitor/?checkin=updaterpm -O /dev/null --quiet
+else
+   exit 0
+fi
+#/usr/csee/sbin/fixgrub.pl
