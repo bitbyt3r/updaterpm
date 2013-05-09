@@ -22,7 +22,7 @@ import sys
 import re
 from types import *
 
-CONFIGFILE='/usr/csee/etc/updaterpm.conf'
+CONFIGFILE='./updaterpm.conf'
 CONFDIR='/etc/yum.repos.d'
 CSEE_CONFDIR='/etc/yum.repos.d.csee'
 STAG_CONFDIR='/etc/yum.repos.d.staging'
@@ -51,7 +51,7 @@ elif not(os.path.exists(CONFDIR)):
   os.symlink(CSEE_CONFDIR, CONFDIR)
 
 # Clean Yum cache files to make sure that we get the most recent ones
-os.spawnvp(os.P_WAIT, 'yum', yumopts + ['clean all'])
+os.system('yum clean all')
 
 # It actually is a good idea to have an up-to-date system before running the 
 # bulk of this script
@@ -103,17 +103,20 @@ installing = grpsToStrList(installGroups)
 print 'Removing:'
 for i in removingPackages+removingGroups:
     print '\t' + i
+if not(removingPackages+removingGroups):
+  print "Nothing!"
 
 print '\nInstalling:'
 for i in installing:
     print '\t' + i
+if not(installing):
+  print "Nothing!"
 
 print
 
+map(base.selectGroup, installGroups)
+map(base.groupRemove, removeGroups)
+map(base.remove, removePackages)
 
-if len(removingPackages) > 0:
-  os.spawnvp(os.P_WAIT, 'yum', yumopts + ['remove'] + removing)
-
-map(base.selectGroup, installing)
 base.buildTransaction()
 base.processTransaction()
