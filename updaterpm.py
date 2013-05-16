@@ -100,6 +100,12 @@ removingPackages = pkgsToStrList(removePackages)
 removingGroups = grpsToStrList(removeGroups)
 installing = grpsToStrList(installGroups)
 
+print
+
+map(base.selectGroup, installGroups)
+map(base.groupRemove, removeGroups)
+map(base.remove, removePackages)
+
 print 'Removing:'
 for i in removingPackages+removingGroups:
     print '\t' + i
@@ -111,12 +117,6 @@ for i in installing:
     print '\t' + i
 if not(installing):
   print "Nothing!"
-
-print
-
-map(base.selectGroup, installGroups)
-map(base.groupRemove, removeGroups)
-map(base.remove, removePackages)
 
 base.buildTransaction()
 base.processTransaction()
