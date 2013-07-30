@@ -26,6 +26,7 @@ CONFIGFILE='./updaterpm.conf'
 CONFDIR='/etc/yum.repos.d'
 CSEE_CONFDIR='/etc/yum.repos.d.csee'
 STAG_CONFDIR='/etc/yum.repos.d.staging'
+UPDATE_CONFDIR='/etc/yum.repos.d.updates'
 STAGINGREPO='staging'
 
 yumopts = ['yum', '-y', '--nogpgcheck']
@@ -47,6 +48,9 @@ if len(sys.argv) > 1 and sys.argv[1] == '--staging':
 elif len(sys.argv) > 1 and sys.argv[1] == '--production':
   cleanupConfig()
   os.symlink(CSEE_CONFDIR, CONFDIR)
+elif len(sys.argv) > 1 and sys.argv[1] == '--updates':
+  cleanupConfig()
+  os.symlink(UPDATE_CONFDIR, CONFDIR)
 elif not(os.path.exists(CONFDIR)):
   os.symlink(CSEE_CONFDIR, CONFDIR)
 
